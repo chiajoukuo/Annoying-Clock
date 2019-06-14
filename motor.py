@@ -26,6 +26,7 @@ while True:
 
 # Forward
     if ch == 'w':
+	   print('forward')
        GPIO.output(17, False)
        GPIO.output(18, True)
        GPIO.output(22, False)
@@ -33,6 +34,7 @@ while True:
 
 # Backward
     if ch == 'x':
+	   print('backward')
        GPIO.output(17, True)
        GPIO.output(18, False)
        GPIO.output(22, True)
