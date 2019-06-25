@@ -13,16 +13,6 @@ import RPi.GPIO as GPIO
 import curses
 from curses import wrapper
 
-GPIO.setmode(GPIO.BCM)
-
-GPIO.setup(17, GPIO.OUT)
-GPIO.setup(18, GPIO.OUT)
-GPIO.setup(22, GPIO.OUT)
-GPIO.setup(23, GPIO.OUT)
-
-stdscr = curses.initscr()
-stdscr.clear()
-
 class Scanner:
     def __init__(self, URL=0):
         self.Frame = []
@@ -113,6 +103,16 @@ if __name__ == "__main__":
             pygame.mixer.music.play()
             
             # motor
+            GPIO.setmode(GPIO.BCM)
+
+            GPIO.setup(17, GPIO.OUT)
+            GPIO.setup(18, GPIO.OUT)
+            GPIO.setup(22, GPIO.OUT)
+            GPIO.setup(23, GPIO.OUT)
+
+            stdscr = curses.initscr()
+            stdscr.clear()
+            
             print("motor start")
             curses.endwin()
             GPIO.output(17, False)
