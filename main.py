@@ -13,6 +13,8 @@ import RPi.GPIO as GPIO
 import curses
 from curses import wrapper
 
+client=boto3.client('rekognition')
+
 class Scanner:
     def __init__(self, URL=0):
         self.Frame = []
@@ -58,8 +60,7 @@ def playmusic(mp3file):
         pass
 
 def detect(photo):
-    client=boto3.client('rekognition')
-
+    print("Start detect")
     with open(photo, 'rb') as image:
         response = client.detect_faces(Image={'Bytes': image.read()},Attributes=['ALL'])
     
@@ -87,6 +88,14 @@ if __name__ == "__main__":
     SETHOUR = opts.hour
     SETMINUTE = opts.minute
 
+    if SETHOUR and SETMINUTE:
+        firebase_url = "https://annoying-clock.firebaseio.com/.json"
+        Data = get(firebase_url).json()['alarm']
+        SETHOUR = Data['alarm1']['hour']
+        SETMINUTE = Data['alarm1']['minute']
+    
+    print(SETHOUR, SETMINUTE)
+
     # set motor
     # GPIO.cleanup()
     GPIO.setmode(GPIO.BCM)
@@ -98,8 +107,7 @@ if __name__ == "__main__":
 
     # t = threading.Thread(target = clock)
     # t.start()
-    
-    print(SETHOUR, SETMINUTE)
+
     do = True
     while do:
         dt = list(time.localtime()) 
@@ -132,6 +140,7 @@ if __name__ == "__main__":
             print("face detecting")
             awaketimes = [False, False]
             s = Scanner()
+
             for i in range(10):
                 awaketimes.append(checkawake(s, i))
                 if awaketimes.count(True) > len(awaketimes)/2:
