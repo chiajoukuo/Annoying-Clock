@@ -12,6 +12,8 @@ from RPLCD.i2c import CharLCD
 import RPi.GPIO as GPIO
 import curses
 from curses import wrapper
+from requests import get
+import json
 
 client=boto3.client('rekognition')
 
@@ -88,7 +90,7 @@ if __name__ == "__main__":
     SETHOUR = opts.hour
     SETMINUTE = opts.minute
 
-    if SETHOUR and SETMINUTE:
+    if (SETHOUR == None) or (SETMINUTE == None):
         firebase_url = "https://annoying-clock.firebaseio.com/.json"
         Data = get(firebase_url).json()['alarm']
         SETHOUR = Data['alarm1']['hour']
