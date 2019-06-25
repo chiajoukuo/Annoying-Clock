@@ -20,7 +20,7 @@ class Scanner:
         self.isstop = False
 
         self.capture = picamera.PiCamera()
-        time.sleep(2)
+        time.sleep(1)
         self.start()
 
     def start(self):
@@ -88,7 +88,7 @@ if __name__ == "__main__":
     SETMINUTE = opts.minute
 
     # set motor
-    GPIO.cleanup()
+    # GPIO.cleanup()
     GPIO.setmode(GPIO.BCM)
 
     GPIO.setup(17, GPIO.OUT)
@@ -139,6 +139,7 @@ if __name__ == "__main__":
                     print("You are finally awake")
                     do = False
                     break
+            s.stop()
             print(awaketimes)
 
         
