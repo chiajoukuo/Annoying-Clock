@@ -86,15 +86,13 @@ if __name__ == "__main__":
     SETMINUTE = opts.minute
 
     # set motor
+    GPIO.cleanup()
     GPIO.setmode(GPIO.BCM)
 
     GPIO.setup(17, GPIO.OUT)
     GPIO.setup(18, GPIO.OUT)
     GPIO.setup(22, GPIO.OUT)
     GPIO.setup(23, GPIO.OUT)
-
-    stdscr = curses.initscr()
-    stdscr.clear()
 
     # t = threading.Thread(target = clock)
     # t.start()
@@ -126,6 +124,7 @@ if __name__ == "__main__":
             GPIO.output(18, False)
             GPIO.output(22, False)
             GPIO.output(23, False)
+            GPIO.cleanup()
 
             # face detect
             print("face detecting")
