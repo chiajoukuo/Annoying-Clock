@@ -9,6 +9,19 @@ import argparse
 import smbus2
 sys.modules['smbus'] = smbus2
 from RPLCD.i2c import CharLCD
+import RPi.GPIO as GPIO
+import curses
+from curses import wrapper
+
+GPIO.setmode(GPIO.BCM)
+
+GPIO.setup(17, GPIO.OUT)
+GPIO.setup(18, GPIO.OUT)
+GPIO.setup(22, GPIO.OUT)
+GPIO.setup(23, GPIO.OUT)
+
+stdscr = curses.initscr()
+stdscr.clear()
 
 class Scanner:
     def __init__(self, URL=0):
@@ -63,7 +76,7 @@ def detect(photo):
     print('Detected faces for ' + photo)    
     for faceDetail in response['FaceDetails']:
         awake = faceDetail['EyesOpen']['Value']
-        print("awake? " + str(awake))
+        print(photo + "awake? " + str(awake))
     return awake
 
 def checkawake(s, t):
@@ -92,12 +105,30 @@ if __name__ == "__main__":
         hour = dt[3] 
         minute = dt[4] 
         if hour == SETHOUR and minute == SETMINUTE:
-            # playmusic("testMusic.mp3")
+            # playmusic
+            print("start to play music")
             pygame.mixer.init()
             pygame.mixer.music.load("../testMusic.mp3")
             pygame.mixer.music.set_volume(1.0)
             pygame.mixer.music.play()
+            
+            # motor
+            print("motor start")
+            curses.endwin()
+            GPIO.output(17, False)
+            GPIO.output(18, False)
+            GPIO.output(22, False)
+            GPIO.output(23, False)
+            time.sleep(5)
+            print("motor stop")
+            curses.endwin()
+            GPIO.output(17, False)
+            GPIO.output(18, False)
+            GPIO.output(22, False)
+            GPIO.output(23, False)
 
+            # face detect
+            print("face detecting")
             awaketimes = [False, False]
             s = Scanner()
             for i in range(10):
