@@ -62,8 +62,10 @@ def detect(photo):
 
     with open(photo, 'rb') as image:
         response = client.detect_faces(Image={'Bytes': image.read()},Attributes=['ALL'])
-
+    
     print('Detected faces for ' + photo)    
+    print(response)
+    awake = False
     for faceDetail in response['FaceDetails']:
         awake = faceDetail['EyesOpen']['Value']
         print(photo + "awake? " + str(awake))
