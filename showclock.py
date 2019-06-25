@@ -6,7 +6,7 @@ sys.modules['smbus'] = smbus2
 
 from RPLCD.i2c import CharLCD
 
-lcd = CharLCD('PCF8574', address=0x27, port=1, backlight_enabled=False)
+lcd = CharLCD('PCF8574', address=0x27, port=1, backlight_enabled=True)
 
 try:
     print('按下 Ctrl-C 可停止程式')
