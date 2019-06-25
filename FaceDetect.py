@@ -48,13 +48,13 @@ def detect(photo):
 
 if __name__ == "__main__":
     
-    # s = Scanner()
-    # newphoto = 'photos/photo_face.png'
-    # s.get_photo(newphoto)
+    s = Scanner()
+    newphoto = 'photos/photo_face.jpg'
+    s.get_photo(newphoto)
 
     photos = ['photos/openeye.jpg',
             'photos/sleepy.jpg']
-    # photos.append(newphoto)
+    photos.append(newphoto)
 
     for i in range(len(photos)):
         print(str(i) + ' photo should be' + photos[i])

@@ -75,7 +75,7 @@ def detect(photo):
     return awake
 
 def checkawake(s, t):
-    newphoto = 'photos/photo_face' + str(t) + '.png'
+    newphoto = 'photos/photo_face' + str(t) + '.jpg'
     s.get_photo(newphoto)
     print('took photo: ' + newphoto)
     isawake = detect(newphoto)
@@ -97,6 +97,9 @@ if __name__ == "__main__":
         SETMINUTE = Data['alarm1']['minute']
     
     print(SETHOUR, SETMINUTE)
+
+    stdscr = curses.initscr()
+    stdscr.clear()
 
     # set motor
     # GPIO.cleanup()
