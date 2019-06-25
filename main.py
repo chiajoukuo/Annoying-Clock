@@ -83,9 +83,10 @@ if __name__ == "__main__":
     SETHOUR = opts.hour
     SETMINUTE = opts.minute
 
-    t = threading.Thread(target = clock)
-    t.start()
+    # t = threading.Thread(target = clock)
+    # t.start()
     
+    print(SETHOUR, SETMINUTE)
     dt = list(time.localtime()) 
     hour = dt[3] 
     minute = dt[4] 
@@ -103,7 +104,7 @@ if __name__ == "__main__":
                 pygame.mixer.music.stop()
                 print("You are finally awake")
         print(awaketimes)
-        
-    t.join()
+
+    # t.join()
 
         
