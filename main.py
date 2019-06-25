@@ -66,10 +66,18 @@ if __name__ == "__main__":
     hour = dt[3] 
     minute = dt[4] 
     if hour == SETHOUR and minute == SETMINUTE:
-        playmusic("testMusic.mp3")
+        # playmusic("testMusic.mp3")
+        pygame.mixer.init()
+        pygame.mixer.music.load("testMusic.mp3")
+        pygame.mixer.music.set_volume(1.0)
+        pygame.mixer.music.play()
+
         awaketimes = []
-        for i in range(3):
+        for i in range(10):
             awaketimes.append(checkawake(i))
-        print awaketimes
+            if awaketimes.count(True) > len(awaketimes)/2:
+                pygame.mixer.music.stop()
+                print("You are finally awake")
+        print(awaketimes)
 
         
