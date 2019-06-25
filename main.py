@@ -66,8 +66,7 @@ def detect(photo):
         print("awake? " + str(awake))
     return awake
 
-def checkawake(t):
-    s = Scanner()
+def checkawake(s, t):
     newphoto = 'photos/photo_face' + str(t) + '.png'
     s.get_photo(newphoto)
     print('took photo: ' + newphoto)
@@ -100,8 +99,9 @@ if __name__ == "__main__":
             pygame.mixer.music.play()
 
             awaketimes = []
+            s = Scanner()
             for i in range(10):
-                awaketimes.append(checkawake(i))
+                awaketimes.append(checkawake(s, i))
                 if awaketimes.count(True) > len(awaketimes)/2:
                     pygame.mixer.music.stop()
                     print("You are finally awake")
