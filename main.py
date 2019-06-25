@@ -119,7 +119,7 @@ if __name__ == "__main__":
             GPIO.output(23, True)
             time.sleep(5)
             print("motor stop")
-            curses.endwin()
+            # curses.endwin()
             GPIO.output(17, False)
             GPIO.output(18, False)
             GPIO.output(22, False)
