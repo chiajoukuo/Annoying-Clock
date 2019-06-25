@@ -4,9 +4,7 @@ import picamera
 import time
 import sys
 import pygame
-
-SETHOUR = 16
-SETMINUTE = 55
+import argparse
 
 class Scanner:
     def __init__(self, URL=0):
@@ -62,6 +60,14 @@ def checkawake(t):
     return isawake
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--hour', type=int)
+    parser.add_argument('--minute', type=int)
+    opts = parser.parse_args()
+
+    SETHOUR = opts.hour
+    SETMINUTE = opts.minute
+
     dt = list(time.localtime()) 
     hour = dt[3] 
     minute = dt[4] 
