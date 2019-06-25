@@ -98,7 +98,7 @@ if __name__ == "__main__":
             pygame.mixer.music.set_volume(1.0)
             pygame.mixer.music.play()
 
-            awaketimes = []
+            awaketimes = [False, False]
             s = Scanner()
             for i in range(10):
                 awaketimes.append(checkawake(s, i))
