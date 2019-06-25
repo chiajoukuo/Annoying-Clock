@@ -98,9 +98,6 @@ if __name__ == "__main__":
     
     print(SETHOUR, SETMINUTE)
 
-    stdscr = curses.initscr()
-    stdscr.clear()
-
     # set motor
     # GPIO.cleanup()
     GPIO.setmode(GPIO.BCM)
