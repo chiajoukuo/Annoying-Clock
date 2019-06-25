@@ -95,7 +95,7 @@ if __name__ == "__main__":
         if hour == SETHOUR and minute == SETMINUTE:
             # playmusic("testMusic.mp3")
             pygame.mixer.init()
-            pygame.mixer.music.load("testMusic.mp3")
+            pygame.mixer.music.load("../testMusic.mp3")
             pygame.mixer.music.set_volume(1.0)
             pygame.mixer.music.play()
 
