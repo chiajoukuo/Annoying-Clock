@@ -109,7 +109,7 @@ if __name__ == "__main__":
 
     # t = threading.Thread(target = clock)
     # t.start()
-
+    print("Start!!!!!!!!")
     do = True
     while do:
         dt = list(time.localtime()) 
@@ -140,10 +140,10 @@ if __name__ == "__main__":
 
             # face detect
             print("face detecting")
-            awaketimes = [False, False]
+            awaketimes = [False]
             s = Scanner()
 
-            for i in range(10):
+            for i in range(5):
                 awaketimes.append(checkawake(s, i))
                 if awaketimes.count(True) > len(awaketimes)/2:
                     pygame.mixer.music.stop()
