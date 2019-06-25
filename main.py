@@ -85,6 +85,17 @@ if __name__ == "__main__":
     SETHOUR = opts.hour
     SETMINUTE = opts.minute
 
+    # set motor
+    GPIO.setmode(GPIO.BCM)
+
+    GPIO.setup(17, GPIO.OUT)
+    GPIO.setup(18, GPIO.OUT)
+    GPIO.setup(22, GPIO.OUT)
+    GPIO.setup(23, GPIO.OUT)
+
+    stdscr = curses.initscr()
+    stdscr.clear()
+
     # t = threading.Thread(target = clock)
     # t.start()
     
@@ -103,16 +114,6 @@ if __name__ == "__main__":
             pygame.mixer.music.play()
             
             # motor
-            GPIO.setmode(GPIO.BCM)
-
-            GPIO.setup(17, GPIO.OUT)
-            GPIO.setup(18, GPIO.OUT)
-            GPIO.setup(22, GPIO.OUT)
-            GPIO.setup(23, GPIO.OUT)
-
-            stdscr = curses.initscr()
-            stdscr.clear()
-
             print("motor start")
             GPIO.output(17, False)
             GPIO.output(18, True)
