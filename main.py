@@ -87,24 +87,26 @@ if __name__ == "__main__":
     # t.start()
     
     print(SETHOUR, SETMINUTE)
-    dt = list(time.localtime()) 
-    hour = dt[3] 
-    minute = dt[4] 
-    if hour == SETHOUR and minute == SETMINUTE:
-        # playmusic("testMusic.mp3")
-        pygame.mixer.init()
-        pygame.mixer.music.load("testMusic.mp3")
-        pygame.mixer.music.set_volume(1.0)
-        pygame.mixer.music.play()
+    do = True
+    while do:
+        dt = list(time.localtime()) 
+        hour = dt[3] 
+        minute = dt[4] 
+        if hour == SETHOUR and minute == SETMINUTE:
+            # playmusic("testMusic.mp3")
+            pygame.mixer.init()
+            pygame.mixer.music.load("testMusic.mp3")
+            pygame.mixer.music.set_volume(1.0)
+            pygame.mixer.music.play()
 
-        awaketimes = []
-        for i in range(10):
-            awaketimes.append(checkawake(i))
-            if awaketimes.count(True) > len(awaketimes)/2:
-                pygame.mixer.music.stop()
-                print("You are finally awake")
-        print(awaketimes)
-
-    # t.join()
+            awaketimes = []
+            for i in range(10):
+                awaketimes.append(checkawake(i))
+                if awaketimes.count(True) > len(awaketimes)/2:
+                    pygame.mixer.music.stop()
+                    print("You are finally awake")
+                    do = False
+                    break
+            print(awaketimes)
 
         
