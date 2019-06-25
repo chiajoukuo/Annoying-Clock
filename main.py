@@ -2,9 +2,13 @@ import boto3
 import json
 import picamera
 import time
+import threading
 import sys
 import pygame
 import argparse
+import smbus2
+sys.modules['smbus'] = smbus2
+from RPLCD.i2c import CharLCD
 
 class Scanner:
     def __init__(self, URL=0):
@@ -29,6 +33,17 @@ class Scanner:
     def get_photo(self, filename):
         self.capture.capture(filename)
 
+def clock():
+    # clock
+    lcd = CharLCD('PCF8574', address=0x27, port=1, backlight_enabled=True)
+    lcd.clear()
+
+    while True:
+        lcd.cursor_pos = (0, 0)
+        lcd.write_string("Date: {}".format(time.strftime("%Y/%m/%d")))
+        lcd.cursor_pos = (1, 0)
+        lcd.write_string("Time: {}".format(time.strftime("%H:%M:%S")))
+        time.sleep(1)
 
 def playmusic(mp3file):
     pygame.mixer.init()
@@ -68,6 +83,9 @@ if __name__ == "__main__":
     SETHOUR = opts.hour
     SETMINUTE = opts.minute
 
+    t = threading.Thread(target = clock)
+    t.start()
+    
     dt = list(time.localtime()) 
     hour = dt[3] 
     minute = dt[4] 
@@ -85,5 +103,7 @@ if __name__ == "__main__":
                 pygame.mixer.music.stop()
                 print("You are finally awake")
         print(awaketimes)
+        
+    t.join()
 
         
