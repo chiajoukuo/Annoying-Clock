@@ -112,13 +112,12 @@ if __name__ == "__main__":
 
             stdscr = curses.initscr()
             stdscr.clear()
-            
+
             print("motor start")
-            curses.endwin()
             GPIO.output(17, False)
-            GPIO.output(18, False)
+            GPIO.output(18, True)
             GPIO.output(22, False)
-            GPIO.output(23, False)
+            GPIO.output(23, True)
             time.sleep(5)
             print("motor stop")
             curses.endwin()
