@@ -89,15 +89,6 @@ if __name__ == "__main__":
     
     print("Alarm Time: ", SETHOUR, SETMINUTE)
 
-    # set motor
-    # GPIO.cleanup()
-    GPIO.setmode(GPIO.BCM)
-
-    GPIO.setup(17, GPIO.OUT)
-    GPIO.setup(18, GPIO.OUT)
-    GPIO.setup(22, GPIO.OUT)
-    GPIO.setup(23, GPIO.OUT)
-
     # t = threading.Thread(target = clock)
     # t.start()
     print("Start!!!!!!!!")
@@ -116,6 +107,15 @@ if __name__ == "__main__":
             pygame.mixer.music.set_volume(1.0)
             pygame.mixer.music.play()
             
+            # set motor
+            # GPIO.cleanup()
+            GPIO.setmode(GPIO.BCM)
+
+            GPIO.setup(17, GPIO.OUT)
+            GPIO.setup(18, GPIO.OUT)
+            GPIO.setup(22, GPIO.OUT)
+            GPIO.setup(23, GPIO.OUT)
+
             # motor
             print("Motor start")
             GPIO.output(17, False)
@@ -143,7 +143,12 @@ if __name__ == "__main__":
                     print("You are finally awake!!!")
                     do = False
                     break
-            s.stop()
             print(awaketimes)
+            SETMINUTE += 10
+            if (SETMINUTE >= 60):
+                SETHOUR += 1
+                SETMINUTE -= 60
+                if (SETHOUR >= 24):
+                    SETHOUR -= 24
 
         
