@@ -54,7 +54,7 @@ if __name__ == "__main__":
     s.stop
 
     photos = []
-    # photos.append(newphoto)
+    photos.append(newphoto)
 
     for i in range(len(photos)):
         print(str(i) + ' photo should be' + photos[i])
