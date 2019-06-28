@@ -16,15 +16,23 @@ import pygame
 # soundStart() 
 # not_executed = 0 
 
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--hour', type=int)
+    parser.add_argument('--minute', type=int)
+    opts = parser.parse_args()
 
-dt = list(time.localtime()) 
-hour = dt[3] 
-minute = dt[4] 
-if hour == 16 and minute == 55: # 下午5點33分的時候開始提示 
-	pygame.mixer.init()
-	pygame.mixer.music.load("testMusic.mp3")
-	pygame.mixer.music.set_volume(1.0)
-	pygame.mixer.music.play()
+    SETHOUR = opts.hour
+    SETMINUTE = opts.minute
 
-	while pygame.mixer.music.get_busy() == True:
-		pass
+	dt = list(time.localtime()) 
+	hour = dt[3] 
+	minute = dt[4] 
+	if hour == SETHOUR and minute == SETMINUTE: # 下午5點33分的時候開始提示 
+		pygame.mixer.init()
+		pygame.mixer.music.load("testMusic.mp3")
+		pygame.mixer.music.set_volume(1.0)
+		pygame.mixer.music.play()
+
+		while pygame.mixer.music.get_busy() == True:
+			pass

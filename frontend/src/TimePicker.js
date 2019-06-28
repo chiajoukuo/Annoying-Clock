@@ -42,8 +42,8 @@ export default function TimePickers(props) {
 		console.log(props.db)
 		console.log(moment(selectedDate).format('h:m'))
 		var alarm = props.db.database().ref('/alarm/alarm1').set({
-			hour: moment(selectedDate).format('H'),
-			minute: moment(selectedDate).format('m')
+			hour: parseInt(moment(selectedDate).format('H')),
+			minute: parseInt(moment(selectedDate).format('m'))
 		})
 			.then(function () {
 				alert("Setting Success!");

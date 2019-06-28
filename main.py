@@ -115,7 +115,7 @@ if __name__ == "__main__":
         dt = list(time.localtime()) 
         hour = dt[3] 
         minute = dt[4]
-        time.sleep(1)
+        # time.sleep(1)
         if hour == SETHOUR and minute == SETMINUTE:
             # playmusic
             print("Start Inside!!!!!!!!")
