@@ -65,7 +65,9 @@ def detect(photo):
 
 def checkawake(s, t):
     newphoto = 'photos/photo_face' + str(t) + '.jpg'
+    s.start()
     s.get_photo(newphoto)
+    s.stop()
     print('took photo: ' + newphoto)
     isawake = detect(newphoto)
     return isawake
