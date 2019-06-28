@@ -92,6 +92,7 @@ if __name__ == "__main__":
     # t = threading.Thread(target = clock)
     # t.start()
     print("Start!!!!!!!!")
+    s = Scanner()
     do = True
     while do:
         dt = list(time.localtime()) 
@@ -134,7 +135,6 @@ if __name__ == "__main__":
             # face detect
             print("Face awake detecting...")
             awaketimes = [False]
-            s = Scanner()
 
             for i in range(5):
                 awaketimes.append(checkawake(s, i))
@@ -144,7 +144,7 @@ if __name__ == "__main__":
                     do = False
                     break
             print(awaketimes)
-            SETMINUTE += 10
+            SETMINUTE += 5
             if (SETMINUTE >= 60):
                 SETHOUR += 1
                 SETMINUTE -= 60
