@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #fff url(https://images.pexels.com/photos/733174/pexels-photo-733174.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260) center center fixed no-repeat;
+  background: #fff url(bg.jpg) center center fixed no-repeat;
   background-size: cover;
 }
 

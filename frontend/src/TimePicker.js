@@ -10,6 +10,7 @@ import {
 	KeyboardTimePicker,
 	KeyboardDatePicker,
 } from '@material-ui/pickers';
+import moment from 'moment';
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,22 +24,32 @@ const useStyles = makeStyles(theme => ({
 		width: 200,
 	},
 	fab: {
-    margin: theme.spacing(1),
-  },
+		margin: theme.spacing(1),
+	},
 }));
 
 export default function TimePickers(props) {
 	console.log(props)
-	const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+	const [selectedDate, setSelectedDate] = React.useState(Date.now());
 	const classes = useStyles();
 	function handleDateChange(date) {
 		setSelectedDate(date);
 	}
 
-	const handleClick = e => {
-		let dbCon = props.db.database().ref('/alarms');
-		console.log(dbCon)
-		console.log(e.target.value)
+	const handleClick = () => {
+		// let dbCon = props.db.database().ref('/alarms');
+		// console.log(dbCon)
+		console.log(props.db)
+		console.log(moment(selectedDate).format('h:m'))
+		var alarm = props.db.database().ref('/alarm/alarm1').set({
+			hour: moment(selectedDate).format('H'),
+			minute: moment(selectedDate).format('m')
+		})
+			.then(function () {
+				alert("Setting Success!");
+			}).catch(function () {
+				alert("Please try again!");
+			});
 		// dbCon.push({
 		// 	message: trim(e.target.value)
 		// });
@@ -46,7 +57,7 @@ export default function TimePickers(props) {
 
 	return (
 		// <form className={classes.container} noValidate>
-			<MuiPickersUtilsProvider utils={DateFnsUtils}>
+		<MuiPickersUtilsProvider utils={DateFnsUtils}>
 			<KeyboardTimePicker
 				margin="normal"
 				id="mui-pickers-time"
@@ -57,11 +68,12 @@ export default function TimePickers(props) {
 					'aria-label': 'change time',
 				}}
 			/>
-			
+
 			<Fab size="small" color="primary" aria-label="Add" className={classes.fab} onClick={handleClick}>
 				<AddIcon />
 			</Fab>
-			</MuiPickersUtilsProvider>
+		</MuiPickersUtilsProvider>
+
 		// </form>
 	);
 }

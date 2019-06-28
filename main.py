@@ -96,7 +96,7 @@ if __name__ == "__main__":
         SETHOUR = Data['alarm1']['hour']
         SETMINUTE = Data['alarm1']['minute']
     
-    print(SETHOUR, SETMINUTE)
+    print("Alarm Time: ", SETHOUR, SETMINUTE)
 
     # set motor
     # GPIO.cleanup()
@@ -112,6 +112,7 @@ if __name__ == "__main__":
     print("Start!!!!!!!!")
     do = True
     while do:
+        print("Start Inside!!!!!!!!")
         dt = list(time.localtime()) 
         hour = dt[3] 
         minute = dt[4] 
