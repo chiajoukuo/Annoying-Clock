@@ -112,12 +112,13 @@ if __name__ == "__main__":
     print("Start!!!!!!!!")
     do = True
     while do:
-        print("Start Inside!!!!!!!!")
         dt = list(time.localtime()) 
         hour = dt[3] 
-        minute = dt[4] 
+        minute = dt[4]
+        time.sleep(1)
         if hour == SETHOUR and minute == SETMINUTE:
             # playmusic
+            print("Start Inside!!!!!!!!")
             print("start to play music")
             pygame.mixer.init()
             pygame.mixer.music.load("../testMusic.mp3")
