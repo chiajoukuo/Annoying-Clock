@@ -17,13 +17,13 @@ import pygame
 # not_executed = 0 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--hour', type=int)
-    parser.add_argument('--minute', type=int)
-    opts = parser.parse_args()
+	parser = argparse.ArgumentParser()
+	parser.add_argument('--hour', type=int)
+	parser.add_argument('--minute', type=int)
+	opts = parser.parse_args()
 
-    SETHOUR = opts.hour
-    SETMINUTE = opts.minute
+	SETHOUR = opts.hour
+	SETMINUTE = opts.minute
 
 	while True:
 		dt = list(time.localtime()) 
