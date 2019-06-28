@@ -62,7 +62,7 @@ def playmusic(mp3file):
         pass
 
 def detect(photo):
-    print("Start detect")
+    print("Detect...")
     with open(photo, 'rb') as image:
         response = client.detect_faces(Image={'Bytes': image.read()},Attributes=['ALL'])
     
@@ -71,7 +71,8 @@ def detect(photo):
         awake = False
     for faceDetail in response['FaceDetails']:
         awake = faceDetail['EyesOpen']['Value']
-        print(photo + "awake? " + str(awake))
+        print(photo)
+        print("awake? " + str(awake))
     return awake
 
 def checkawake(s, t):
@@ -118,7 +119,7 @@ if __name__ == "__main__":
         # time.sleep(1)
         if hour == SETHOUR and minute == SETMINUTE:
             # playmusic
-            print("Start Inside!!!!!!!!")
+            print("Time to get up!!!!!!!!")
             print("start to play music")
             pygame.mixer.init()
             pygame.mixer.music.load("../testMusic.mp3")
@@ -126,13 +127,13 @@ if __name__ == "__main__":
             pygame.mixer.music.play()
             
             # motor
-            print("motor start")
+            print("Motor start")
             GPIO.output(17, False)
             GPIO.output(18, True)
             GPIO.output(22, False)
             GPIO.output(23, True)
             time.sleep(5)
-            print("motor stop")
+            print("Motor stop")
             # curses.endwin()
             GPIO.output(17, False)
             GPIO.output(18, False)
@@ -141,7 +142,7 @@ if __name__ == "__main__":
             GPIO.cleanup()
 
             # face detect
-            print("face detecting")
+            print("Face awake detecting...")
             awaketimes = [False]
             s = Scanner()
 
@@ -149,7 +150,7 @@ if __name__ == "__main__":
                 awaketimes.append(checkawake(s, i))
                 if awaketimes.count(True) > len(awaketimes)/2:
                     pygame.mixer.music.stop()
-                    print("You are finally awake")
+                    print("You are finally awake!!!")
                     do = False
                     break
             s.stop()
