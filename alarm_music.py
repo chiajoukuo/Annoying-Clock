@@ -25,14 +25,15 @@ if __name__ == "__main__":
     SETHOUR = opts.hour
     SETMINUTE = opts.minute
 
-	dt = list(time.localtime()) 
-	hour = dt[3] 
-	minute = dt[4] 
-	if hour == SETHOUR and minute == SETMINUTE: # 下午5點33分的時候開始提示 
-		pygame.mixer.init()
-		pygame.mixer.music.load("testMusic.mp3")
-		pygame.mixer.music.set_volume(1.0)
-		pygame.mixer.music.play()
+	while True:
+		dt = list(time.localtime()) 
+		hour = dt[3] 
+		minute = dt[4] 
+		if hour == SETHOUR and minute == SETMINUTE: # 下午5點33分的時候開始提示 
+			pygame.mixer.init()
+			pygame.mixer.music.load("testMusic.mp3")
+			pygame.mixer.music.set_volume(1.0)
+			pygame.mixer.music.play()
 
-		while pygame.mixer.music.get_busy() == True:
-			pass
+			while pygame.mixer.music.get_busy() == True:
+				pass
