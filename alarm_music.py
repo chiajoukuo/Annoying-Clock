@@ -32,7 +32,7 @@ if __name__ == "__main__":
 		minute = dt[4] 
 		if hour == SETHOUR and minute == SETMINUTE: # 下午5點33分的時候開始提示 
 			pygame.mixer.init()
-			pygame.mixer.music.load("testMusic.mp3")
+			pygame.mixer.music.load("../testMusic.mp3")
 			pygame.mixer.music.set_volume(1.0)
 			pygame.mixer.music.play()
 
