@@ -40,18 +40,6 @@ class Scanner:
     def get_photo(self, filename):
         self.capture.capture(filename)
 
-def clock():
-    # clock
-    lcd = CharLCD('PCF8574', address=0x27, port=1, backlight_enabled=True)
-    lcd.clear()
-
-    while True:
-        lcd.cursor_pos = (0, 0)
-        lcd.write_string("Date: {}".format(time.strftime("%Y/%m/%d")))
-        lcd.cursor_pos = (1, 0)
-        lcd.write_string("Time: {}".format(time.strftime("%H:%M:%S")))
-        time.sleep(1)
-
 def playmusic(mp3file):
     pygame.mixer.init()
     pygame.mixer.music.load(mp3file)
