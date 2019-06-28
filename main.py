@@ -104,7 +104,7 @@ if __name__ == "__main__":
             print("Time to get up!!!!!!!!")
             print("start to play music")
             pygame.mixer.init()
-            pygame.mixer.music.load("../testMusic.mp3")
+            pygame.mixer.music.load("../testMusic2.mp3")
             pygame.mixer.music.set_volume(1.0)
             pygame.mixer.music.play()
             
@@ -136,7 +136,7 @@ if __name__ == "__main__":
             print("Face awake detecting...")
             awaketimes = [False]
 
-            for i in range(5):
+            for i in range(10):
                 awaketimes.append(checkawake(s, i))
                 if awaketimes.count(True) > len(awaketimes)/2:
                     pygame.mixer.music.stop()

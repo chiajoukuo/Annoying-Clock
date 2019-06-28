@@ -49,8 +49,8 @@ class App extends Component {
     return (
       <div className="App">
         <section className="jumbotron-header header">
-          <h1 className="jumbotron-heading display-2">Annoying Alarm</h1>
-          <p className="lead mt-5 display-4">Set your alarm time below</p>
+          <h1 className="jumbotron-heading display-4">Annoying Alarm</h1>
+          <p className="lead mt-5">Set your alarm time below</p>
           <div className="picker">
             <TimePicker db={firebase} />
           </div>
